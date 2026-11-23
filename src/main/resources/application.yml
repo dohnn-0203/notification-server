@@ -1,0 +1,29 @@
+server:
+  address: 127.0.0.1
+  port: ${SERVER_PORT:8080}
+
+spring:
+  application:
+    name: notification-server
+  data:
+    redis:
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:16379}
+      connect-timeout: 2s
+      timeout: 2s
+
+notification:
+  key-prefix: ${NOTIFICATION_PREFIX:notification-demo}
+  worker-enabled: true
+  poll-delay-ms: 300
+  retry-delay-ms: 1000
+  max-attempts: 3
+
+management:
+  health:
+    redis:
+      enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: health
